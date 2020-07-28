@@ -1,0 +1,59 @@
+{% extends "classroom/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+	
+	{% if messages %}
+		<div class="alert alert-primary alert-dismissible fade show" role="alert">
+			{% for message in messages %}
+				<div class="alert">{{ message|safe }}</div>
+			{% endfor %}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	{% endif %}
+
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd assignment_list">
+		    	<h2>Student Name : {{ student.name }}</h2>
+		    	<br>
+  				<table class="table table-light table-striped table-hover">
+					<thead class="thead-dark">
+				  		<tr>
+						    <th scope="col">#</th>
+						    <th scope="col">Topic</th>
+						    <th scope="col">Test</th>
+						    <th scope="col">Marks Obtained</th>
+						    <th scope="col">Max. Marks</th>
+						    <th scope="col"></th>
+				  		</tr>
+					</thead>
+					<tbody>
+							{% if given_marks.count == 0 %}
+								<tr>
+									<td colspan="6" style="text-align: center;font-style: italic;">There are no marks added</td>
+					    		</tr>
+							{% else %}
+								{% for marks in given_marks %}
+						    		<tr>
+										<th scope="row">{{ forloop.counter }}</th>
+										<td>{{ marks.subject_name }}</td>
+										<td>{{ marks.test_name }}</td>
+										<td>{{ marks.marks_obtained }}</td>
+										<td>{{ marks.maximum_marks }}</td>
+										<td><a class="btn btn-primary" href="{% url 'classroom:update_marks' pk=marks.pk %}">Update</a></td>
+						    		</tr>
+						  		{% endfor %}
+							{% endif %}				
+					</tbody>
+				</table>
+				<br>
+				<p> <a class="btn btn-danger" href="{% url 'classroom:enter_marks' pk=student.pk %}">Add marks</a> </p>
+		    </div>
+		</div>
+	</div>
+	
+{% endblock %}

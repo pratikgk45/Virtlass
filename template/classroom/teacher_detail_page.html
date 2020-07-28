@@ -1,0 +1,33 @@
+{% extends 'classroom/base.html' %}
+{% load static %}
+{% block content %}
+
+	<div class="use-content">
+		<div class="contain">
+			<div class="profile">
+			    {% if teacher.teacher_profile_pic %}
+			    	<img src="{{ teacher.teacher_profile_pic.url }}">
+			    {% else %}
+			    	<img src="{% static 'images/login-avatar.PNG' %}" alt="">
+			    {% endif %}
+			    <div class="profile-details">
+			    	<br>
+					<h2>{{ teacher.name }}</h2>
+					<p><i class="far fa-user"></i> Username: {{ teacher.user.username }}</p>
+					<p><i class="fas fa-books"></i> Subject Name: {{ teacher.subject_name }}</p>
+					<p><i class="far fa-phone"></i> Phone: {{ teacher.phone }}</p>
+					<p><i class="far fa-envelope-open-text"></i> Email ID:  <a href = "mailto:{{ teacher.email }}" style="text-decoration: none;">{{ teacher.email }}</a></p>
+					{% if request.user.is_teacher %}
+						{% if user.pk == request.user.pk %}
+							<a href="{% url 'classroom:teacher_update' pk=user.pk %}" style="text-decoration: none;"><p>Edit Profile</p></a>
+						{% endif %}
+					{% else %}
+						<a href="{% url 'classroom:write_message' pk=teacher.pk %}"  style="text-decoration: none;"><p>Message</p> </a>
+					{% endif %}
+			    </div>
+			</div>
+		</div>
+    </div>
+
+{% endblock %}
+

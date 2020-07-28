@@ -1,0 +1,22 @@
+{% extends "classroom/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd">
+		        {% if marks_given %}
+					<h2>Marks added successfully.</h2>
+				{% else %}
+					<h1>Give Marks to {{ student.name }}</h1>
+					<form method="post">
+						{% csrf_token %}
+						{% bootstrap_form form %}
+						<input type="submit" class="btn btn-danger" name="" value="Add Marks">
+					</form>
+				{% endif %}
+		    </div>
+		</div>
+	</div>
+
+{% endblock %}

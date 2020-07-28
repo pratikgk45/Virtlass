@@ -1,0 +1,43 @@
+{% extends "classroom/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+	
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd assignment_list">
+  				<table class="table table-light table-striped table-hover">
+					<thead class="thead-dark">
+				  		<tr>
+						    <th scope="col">#</th>
+					        <th scope="col">Submitted By</th>
+					        <th scope="col">Assignment</th>
+					        <th scope="col">Submitted on</th>
+					        <th scope="col">Download</th>
+					        <th scope="col">Enter Marks</th>
+				  		</tr>
+					</thead>
+					<tbody>
+							{% if teacher.teacher_submit.count == 0 %}
+								<tr>
+									<td colspan="6" style="text-align: center;font-style: italic;">No Submission Yet</td>
+					    		</tr>
+							{% else %}
+								{% for submission in teacher.teacher_submit.all %}
+						    		<tr>
+										<th scope="row">{{ forloop.counter }}</th>
+										<td><a href="{% url 'classroom:student_detail' pk=submission.student.user.pk %}" target="_blank" style="text-decoration: none;">{{ submission.student.name }}</a></td>
+										<td>{{ submission.submitted_assignment.assignment_name }}</td>
+										<td>{{ submission.created_at }}</td>
+										<td><a href="{{ submission.submit.url }}" class="btn btn-secondary" target="_blank">Download</a></td>
+										<td> <a class="btn btn-danger"  href="{% url 'classroom:enter_marks' pk=submission.student.pk %}">Enter Marks</a> </td>
+						    		</tr>
+						  		{% endfor %}
+							{% endif %}				
+					</tbody>
+				</table>
+		    </div>
+		</div>
+	</div>
+
+{% endblock %}

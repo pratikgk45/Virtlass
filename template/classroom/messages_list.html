@@ -1,0 +1,49 @@
+{% extends "classroom/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+	
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd assignment_list">
+  				<table class="table table-light table-striped table-hover">
+					<thead class="thead-dark">
+				  		<tr>
+						    <th scope="col">Sent By</th>
+						    <th scope="col">Roll No.</th>
+						    <th scope="col">Name</th>
+						    <th scope="col">Message</th>
+						    <th scope="col">Received At</th>
+				  		</tr>
+					</thead>
+					<tbody>
+							{% if teacher.messages.count == 0 %}
+								<tr>
+									<td colspan="5" style="text-align: center;font-style: italic;">No Messages Received Yet</td>
+					    		</tr>
+							{% else %}
+								{% for mssg in teacher.messages.all %}
+						    		<tr>
+										<td class="align-middle">
+											<a href="{% url 'classroom:student_detail' pk=mssg.student.user.pk %}" target="_blank" style="text-decoration: none;">
+												{% if mssg.student.student_profile_pic %}
+											        <img src="{{ mssg.student.student_profile_pic.url }}">
+											    {% else %}
+											        <img src="{% static 'images/login-avatar.PNG' %}">
+											    {% endif %}
+											</a>
+										</td>
+										<td class="align-middle">{{ mssg.student.roll_no }}</td>
+										<td class="align-middle"><a href="{% url 'classroom:student_detail' pk=mssg.student.user.pk %}" target="_blank" style="text-decoration: none;">{{ mssg.student.name }}</a></td>
+										<td class="align-middle">{{ mssg.message_html|safe }}</td>
+										<td class="align-middle">{{ mssg.created_at }}</td>
+						    		</tr>
+						  		{% endfor %}
+							{% endif %}				
+					</tbody>
+				</table>
+		    </div>
+		</div>
+	</div>
+	
+{% endblock %}

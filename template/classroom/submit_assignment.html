@@ -1,0 +1,20 @@
+{% extends "classroom/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd">
+		        <h1>Submit Assignment</h1>
+		        <br>
+				<form enctype="multipart/form-data" method="post">
+					{% csrf_token %}
+					<div class="form-group"><input type="file" name="submit" class="form-control-file" title="" required id="id_submit"></div>
+					<br>
+					<input type="submit" class="btn btn-primary" name="" value="Upload">
+				</form>
+		    </div>
+		</div>
+	</div>
+
+{% endblock %}

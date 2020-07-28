@@ -1,0 +1,22 @@
+{% extends "classroom/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd">
+		        <h1>Delete {{ object.assignment_name }} ?</h1>
+
+				<form method='POST'>
+					{% csrf_token %}
+					<p>Are you sure you want to remove this Assignment ?</p>
+					<p>Current Content : <a href="{{ object.assignment.url }}" style="text-decoration: none;" target="_blank">{{ object.assignment_name }}</a></p>
+					<br>
+					<input class="btn btn-primary" type='submit' value='Yes'>
+					<a class="btn btn-secondary" href="{% url 'classroom:assignment_list' %}">Cancel</a>
+				</form>
+		    </div>
+		</div>
+	</div>
+
+{% endblock %}

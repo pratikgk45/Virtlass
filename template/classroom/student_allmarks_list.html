@@ -1,0 +1,42 @@
+{% extends "classroom/base.html" %}
+{% load static %}
+{% block content %}
+
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd assignment_list">
+  				<table class="table table-light table-striped table-hover">
+					<thead class="thead-dark">
+				  		<tr>
+						    <th scope="col">#</th>
+					        <th scope="col">Subject</th>
+					        <th scope="col">Test</th>
+					        <th scope="col">Teacher Name</th>
+					        <th scope="col">Marks Obtained</th>
+					        <th scope="col">Max. Marks</th>
+				  		</tr>
+					</thead>
+					<tbody>
+						{% if student.marks.count == 0 %}
+							<tr>
+								<td colspan="6" style="text-align: center;font-style: italic;">No marks have been published yet</td>
+				    		</tr>
+						{% else %}
+							{% for object in student.marks.all %}
+					    		<tr>
+									<th scope="row">{{ forloop.counter }}</th>
+									<td>{{ object.subject_name }}</td>
+									<td>{{ object.test_name }}</td>
+									<td><a href="{% url 'classroom:teacher_detail' pk=object.teacher.user.pk %}" target="_blank" style="text-decoration: none;">{{ object.teacher.name }}</a></td>
+									<td>{{ object.marks_obtained }}</td>
+									<td>{{ object.maximum_marks }}</td>
+					    		</tr>
+					  		{% endfor %}
+						{% endif %}				
+					</tbody>
+				</table>
+		    </div>
+		</div>
+	</div>
+	
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "classroom/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+	
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd">
+		    	<br>
+		        {% if notice_sent %}
+			  		<h1>Your Notice is added successfully.</h1>
+			  	{% else %}
+			  		<h1 style="text-align:center;">Notice !</h1>
+			  		<hr>
+			  		<form method="post">
+			    		{% csrf_token %}
+					    <div class="form-group">
+					    	<textarea name="message" cols="40" rows="10" class="form-control" placeholder="Write your notice here... " title="" required id="id_message"></textarea>
+					    </div>
+					    <input type="submit" class="btn btn-danger" value="Add Notice">
+			  		</form>
+			  	{% endif %}
+		    </div>
+		</div>
+	</div>
+
+{% endblock %}

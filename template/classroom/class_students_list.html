@@ -1,0 +1,63 @@
+{% extends "classroom/base.html" %}
+{% load static %}
+{% block content %}
+	
+	{% if messages %}
+		<div class="alert alert-primary alert-dismissible fade show" role="alert">
+			{% for message in messages %}
+				<div class="alert">{{ message|safe }}</div>
+			{% endfor %}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	{% endif %}
+
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd assignment_list">
+		        <form method='GET' action="{% url 'classroom:class_student_list' %}">
+    				Search Student : <input type='search' name='q' placeholder="Search by Name" style="width: auto;" class="answer">&nbsp;<a href="{% url 'classroom:class_student_list' %}" class="btn btn-secondary" style="float: right;">Clear Search</a>
+  				</form>
+  				<br>
+  				<table class="table table-light table-striped table-hover">
+					<thead class="thead-dark">
+				  		<tr>
+						    <th scope="col">#</th>
+						    <th scope="col">Profile Picture</th>
+						    <th scope="col">Roll No.</th>
+						    <th scope="col">Name</th>
+						    <th scope="col">Username</th>
+						    <th scope="col"></th>
+				  		</tr>
+					</thead>
+					<tbody>
+							{% if class_students_list|length == 0 %}
+								<tr>
+									<td colspan="6" style="text-align: center;font-style: italic;">There are no students in the class</td>
+					    		</tr>
+							{% else %}
+								{% for student in class_students_list %}
+						    		<tr>
+										<th scope="row" class="align-middle">{{ forloop.counter }}</th>
+										<td class="align-middle">
+											{% if mssg.student.student_profile_pic %}
+										        <img src="{{ mssg.student.student_profile_pic.url }}">
+										    {% else %}
+										        <img src="{% static 'images/login-avatar.PNG' %}">
+										    {% endif %}
+										</td>
+										<td class="align-middle">{{ student.roll_no }}</td>
+										<td class="align-middle"><a href="{% url 'classroom:student_detail' pk=student.user.pk %}" target="_blank" style="text-decoration: none;">{{ student.name }}</a></td>
+										<td class="align-middle">{{ student.user.username }}</td>
+										<td class="align-middle"><a href="{% url 'classroom:student_marks_list' pk=student.pk %}" class="btn btn-primary">SCORE PROFILE</a></td>
+						    		</tr>
+						  		{% endfor %}
+							{% endif %}				
+					</tbody>
+				</table>
+		    </div>
+		</div>
+	</div>
+	
+{% endblock %}

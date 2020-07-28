@@ -1,0 +1,44 @@
+{% extends 'classroom/base.html' %}
+{% load static %}
+
+{% block content %}
+	<div class="use-content">
+		<div class="contain">
+			<div class="container">
+				<div class="row center" style="font-family: Verdana,Geneva,sans-serif;">
+        			<div class="col-md-6 offset-md-3">
+						<br>
+				    	{% if registered %}
+				    		<br><br>
+							<h2 style="user-select: none;">Thank you for registering :)</h2>
+							<br>
+							<h3 style="user-select: none;">Now you can proceed to Login...</h3>
+						{% else %}
+							<h2 style="user-select: none;">Sign up as a Student</h2>
+							<br>
+							<form action="{% url 'classroom:StudentSignUp' %}" method="post">
+								{% csrf_token %}
+
+								{{ student_profile_form.errors }}
+								{{ user_form.errors }}
+								<p> <input type="text" name="name" class="answer" maxlength="250" required autofocus id="id_name" placeholder="Name"></p>
+						        <p> <input type="text" name="roll_no" class="answer" maxlength="50" required id="id_roll_no" placeholder="Roll No."></p>
+						        <p> <input type="text" name="phone" class="answer" required id="id_phone" pattern=".{10}" maxlength="10" minlength="10" placeholder="Contact No."></p>
+						        <p> <input type="email" name="email" class="answer" maxlength="254" required id="id_email" placeholder="Email ID"></p>
+
+						        <br>
+						        <p> <input type="text" name="username" class="answer" maxlength="150" required id="id_username" placeholder="Username"></p>
+						        <p> <input type="password" name="password1" class="answer" required id="id_password1" placeholder="Password"></p>
+						        <p> <input type="password" name="password2" class="answer" required id="id_password2" placeholder="Confirm Password"></p>
+								<input class="btn btn-primary" type="submit" name="" value="Sign Up">&nbsp;
+								<a href="{% url 'classroom:login' %}" style="text-decoration: none;">Already have an account ?</a>
+							</form>
+				    	{% endif %}
+				    </div>
+				</div>
+		    </div>
+		</div>
+  	</div>
+</div>
+
+{% endblock %}

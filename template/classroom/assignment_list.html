@@ -1,0 +1,42 @@
+{% extends "classroom/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+	
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd assignment_list">
+				<table class="table table-light table-striped table-hover">
+					<thead class="thead-dark">
+				  		<tr>
+						    <th scope="col">#</th>
+						    <th scope="col">Assignment Name</th>
+						    <th scope="col">Last Updated</th>
+						    <th scope="col"></th>
+						    <th scope="col"></th>
+						    <th scope="col"></th>
+				  		</tr>
+					</thead>
+					<tbody>
+						{% if teacher.teacher_assignment.count == 0 %}
+							<tr>
+								<td colspan="6" style="text-align: center;">There are no assignments uploaded yet</td>
+							</tr>
+						{% else %}
+							{% for assignment in teacher.teacher_assignment.all %}
+					    		<tr>
+									<th scope="row">{{ forloop.counter }}</th>
+									<td>{{ assignment.assignment_name }}</td>
+									<td>{{ assignment.created_at }}</td>
+									<td><a href="{{ assignment.assignment.url }}" class="btn btn-secondary" target="_blank">Download</a></td>
+									<td><a href="{% url 'classroom:update_assignment' id=assignment.id %}" class="btn btn-primary">Update</a></td>
+									<td><a href="{% url 'classroom:assignment_delete' id=assignment.id %}" class="btn btn-danger">Delete</a></td>
+					    		</tr>
+					  		{% endfor %}
+						{% endif %}
+					</tbody>
+				</table>
+		    </div>
+		</div>
+	</div>
+
+{% endblock %}
