@@ -10,7 +10,7 @@
 					<br>
 					<a href="{% url 'classroom:upload_assignment' %}" class="btn btn-primary">Want to add one more ?</a>
 				{% else %}
-					<h1>Upload Assignment</h1>
+					<h1 class="scramble_text">Upload Assignment</h1>
 					<form enctype="multipart/form-data" method="post">
 						{% csrf_token %}
 						{% bootstrap_form form %}

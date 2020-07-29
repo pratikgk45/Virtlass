@@ -8,7 +8,7 @@
 		        {% if profile_updated %}
   					<h1>Your profile is updated successfully.</h1>
   				{% else %}
-  					<h1>Update Profile</h1>
+  					<h1 class="scramble_text">Update Profile</h1>
 					<form enctype="multipart/form-data" method="post">
     					{% csrf_token %}
     					{% bootstrap_form form %}

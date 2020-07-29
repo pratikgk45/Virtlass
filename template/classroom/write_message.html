@@ -9,7 +9,7 @@
 		        {% if message_sent %}
 			  		<h1>Message is sent successfully.</h1>
 			  	{% else %}
-			  		<h1 style="text-align:center;">Write a Message to {{ teacher.name }}</h1>
+			  		<h1 style="text-align:center;" class="scramble_text">Write a Message to {{ teacher.name }}</h1>
 			  		<hr>
 			  		<form method="post">
 			    		{% csrf_token %}

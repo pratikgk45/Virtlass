@@ -14,7 +14,7 @@
 							<br>
 							<h3 style="user-select: none;">Now you can proceed to Login...</h3>
 						{% else %}
-							<h2 style="user-select: none;">Sign up as a Teacher</h2>
+							<h2 style="user-select: none;" class="scramble_text">Sign up as a Teacher</h2>
 							<br>
 							<form action="{% url 'classroom:TeacherSignUp' %}" method="post">
 								{% csrf_token %}
