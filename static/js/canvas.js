@@ -205,12 +205,25 @@ function rotate(){
 	// INJECT CSS
 	var css = document.createElement("style");
 	css.type = "text/css";
-	css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #dd0; color: #dd0; }";
+	css.innerHTML = ".txt-rotate > .wrap { border-right: 0.05em solid #7fff00; color: #7fff00; }";
 	document.body.appendChild(css);
 }
 
+const preloader = document.querySelector('.preloader');
+const fadeEffect = setInterval(() => {
+	if(!preloader.style.opacity){
+		preloader.style.opacity = 1;
+	}
+	if(preloader.style.opacity > 0) {
+		preloader.style.opacity -= 0.1;
+	}else{
+		clearInterval(fadeEffect);
+	}
+}, 20);
+
 window.onload = function() {
+	$(".preloader").delay(2000).fadeOut(1000);
 	// init();
 	rotate();
-	$(".scramble_text").scramble(2000, 20, "all", true);
+	$(".scramble_text").scramble(5000, 20, "all", true);
 };

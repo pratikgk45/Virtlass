@@ -12,7 +12,7 @@ html{
 }
 
 body{
-	overflow-x: hidden;
+	overflow: hidden;
 	font-family: 'Roboto Condensed',sans-serif;
 	background-image: url('../images/homeimg.PNG');
 	background-size: cover;
@@ -40,8 +40,18 @@ i:hover{
 	animation-iteration-count: infinite;
 }
 
-.sk-pulse{
-	
+.preloader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	background-color: #111;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	transition: opacity 0.3s linear;
 }
 
 .homepage{
@@ -53,6 +63,7 @@ i:hover{
 
 .homepage h1{
 	font-size: 48px;
+	letter-spacing: 1px;
 }
 
 .homepage h2{
@@ -144,6 +155,10 @@ i:hover{
 
 .footer a img:hover{
 	transform: scale(1.4);
+}
+
+.gitlogo{
+	display: none;
 }
 
 @keyframes shake {
