@@ -13,7 +13,7 @@ html{
 
 body{
 	overflow: hidden;
-	background: linear-gradient(90deg, rgba(131,58,180,.6) 0%, rgba(253,29,29,.6) 50%, rgba(252,176,69,.6) 100%), url('../images/homeimg.PNG');
+	background: linear-gradient(90deg, rgba(220,150,69,.6) 0%, rgba(252,176,69,.6) 100%), url('../images/homeimg.PNG');
 	background-size: cover;
 }
 
