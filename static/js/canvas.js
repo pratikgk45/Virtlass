@@ -197,8 +197,8 @@ function rotate(){
 	for (var i=0; i<elements.length; i++) {
 		var toRotate = elements[i].getAttribute('data-rotate');
 		var period = elements[i].getAttribute('data-period');
-		if (toRotate) {
-		  new TxtRotate(elements[i], JSON.parse(toRotate), period);
+		if(toRotate) {
+		  	new TxtRotate(elements[i], JSON.parse(toRotate), period);
 		}
 	}
 	
@@ -209,8 +209,26 @@ function rotate(){
 	document.body.appendChild(css);
 }
 
+var cnt = 0;
+
+function fade(){
+	$(".prod_name").fadeIn(1000);
+	$(".prod_name").fadeOut(1000);
+	if(cnt % 2)
+		$(".prod_name").text("VIRTLASS");
+	else
+		$(".prod_name").text("ONLINE CLASSROOM PORTAL");
+	cnt = (cnt + 1) % 2;
+
+	setTimeout(function() {
+		fade();
+	}, 2000);
+}
+
 window.onload = function() {
 	// init();
+	cnt = 0;
 	rotate();
+	fade();
 	$(".scramble_text").scramble(5000, 20, "all", true);
 };

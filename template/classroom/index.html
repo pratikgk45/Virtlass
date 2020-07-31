@@ -1,18 +1,6 @@
 {% extends 'classroom/base.html' %}
 {% load static %}
 
-{% block preloader %}
-	<div class="box_hill">
-		<div id="box"></div>
-		<div id="hill"></div>
-	</div>
-	<!-- <div class="pl pl-butterfly"></div>
-	<div class="pl pl-flip"></div>
-	<div class="pl pl-origami"></div>
-	<div class="pl pl-puzzle"></div>
-	<div class="pl pl-tuckbehind"></div> -->
-{% endblock %}
-
 {% block content %}
 
 	{% if messages %}
@@ -31,7 +19,8 @@
 			<div class="homepage" style="text-align: center;">
 				<h2>WELCOME TO</h2>
 				<br>
-				<h1><span class="txt-rotate" data-period="1000" data-rotate='[ "VIRTLASS", "ONLINE CLASSROOM PORTAL"]'></span></h1>
+				<!-- <h1><span class="txt-rotate" data-period="1000" data-rotate='[ "VIRTLASS", "ONLINE CLASSROOM PORTAL"]'></span></h1> -->
+				<h1 class="prod_name"></h1>
 			</div>
 		</div>
     </div>
