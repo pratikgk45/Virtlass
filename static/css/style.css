@@ -40,7 +40,7 @@ i:hover{
 }
 
 .navbar{
-	background: linear-gradient(90deg, #ced0f5, #7c96de);
+	background: radial-gradient(circle, #2078b3, #73c8fa);
 }
 
 .homepage{
