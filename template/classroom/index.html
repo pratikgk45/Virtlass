@@ -1,6 +1,18 @@
 {% extends 'classroom/base.html' %}
 {% load static %}
 
+{% block preloader %}
+	<div class="box_hill">
+		<div id="box"></div>
+		<div id="hill"></div>
+	</div>
+	<!-- <div class="pl pl-butterfly"></div>
+	<div class="pl pl-flip"></div>
+	<div class="pl pl-origami"></div>
+	<div class="pl pl-puzzle"></div>
+	<div class="pl pl-tuckbehind"></div> -->
+{% endblock %}
+
 {% block content %}
 
 	{% if messages %}

@@ -4,14 +4,14 @@
 	align-items: center;
 	height: 100%;
 	width: 100%;
-	background-color: #111;
+	background-color: #222;
 	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 9999;
 }
 
-.preloader_block{
+.box_hill{
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -19,74 +19,258 @@
 	margin-left: -2.7em;
 	width: 5.4em;
 	height: 5.4em;
-	background-color: #111;
+	background-color: #222;
 	z-index: 999;
 }
 
 #hill {
 	position: absolute;
-	width: 7.1em;
-	height: 7.1em;
+	width: 17em;
+	height: 17em;
 	top: 1.7em;
 	left: 1.7em;
-	background-color: #111;
+	background-color: #222;
 	border-left: .25em solid whitesmoke;
 	transform: rotate(45deg);
 }
 
 #hill:after {
 	position: absolute;
-	width: 7.1em;
-	height: 7.1em;
+	width: 17em;
+	height: 17em;
 	left: 0;
-	background-color: #111;
+	background-color: #222;
 }
 
 #box {
 	position: absolute;
-	left: 0;
-	bottom: -.1em;
-	width: 1em;
-	height: 1em;
-	background-color: transparent;
+	left: -3em;
+	bottom: -7em;
+	width: 3em;
+	height: 3em;
+	background-color: whitesmoke;
 	border: .25em solid whitesmoke;
-	border-radius: 15%;
-	transform: translate(0, -1em) rotate(-45deg);
-	animation: push 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
+	border-radius: 5%;
+	transform: translate(0em, -3em) rotate(-45deg);
+	animation: push 2.5s cubic-bezier(.8, 0, .47, .97) infinite;
 }
 
 @keyframes push {
-	0% {
-		transform: translate(0, -1em) rotate(-45deg);
+	0% { transform: translate(0em, -3em) rotate(-45deg);}
+	5% { transform: translate(0em, -3em) rotate(-40deg);}
+	20% { transform: translate(3em, -6em) rotate(47deg);}
+	25% { transform: translate(3em, -6em) rotate(45deg);}
+	30% { transform: translate(3em, -6em) rotate(40deg);}
+	45% { transform: translate(6em, -9em) rotate(137deg);}
+	50% { transform: translate(6em, -9em) rotate(135deg);}
+	55% { transform: translate(6em, -9em) rotate(130deg);}
+	70% { transform: translate(9em, -12em) rotate(217deg);}
+	75% { transform: translate(9em, -12em) rotate(220deg);}
+	100% { transform: translate(0em, -3em) rotate(-45deg);}
+}
+
+.pl, .pl:before, .pl:after {
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+.pl {
+	margin: 0 auto 1.5em auto;
+	position: relative;
+	width: 5em;
+	height: 5em;
+}
+.pl:before, .pl:after {
+	background: whitesmoke;
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 50%;
+	transform-origin: 50% 100%;	
+	clip-path: polygon(0 0,100% 0,50% 100%);
+	-webkit-clip-path: polygon(0 0,100% 0,50% 100%);
+}
+.pl-name {
+	text-align: center;
+}
+
+/* Butterfly */
+.pl-butterfly {
+	animation-name: butterflyA;
+}
+.pl-butterfly:before {
+	animation-name: butterflyB;
+}
+.pl-butterfly:after {
+	animation-name: butterflyC;
+}
+@keyframes butterflyA {
+	from, to { transform: translateY(0) }
+	50% { transform: translateY(25%) }
+}
+@keyframes butterflyB {
+	from, 50%, to { transform: rotate(60deg) }
+	25%, 75% { transform: rotate(120deg) }
+}
+@keyframes butterflyC {
+	from, 50%, to { transform: rotate(300deg) }
+	25%, 75% { transform: rotate(240deg) }
+}
+
+/* Flip */
+.pl-flip {
+	animation-name: flipA;
+	animation-timing-function: steps(1);
+}
+.pl-flip:before, .pl-flip:after {
+	transform-origin: 50% 50%;
+}
+.pl-flip:before {
+	animation-name: flipB;
+}
+.pl-flip:after {
+	animation-name: flipC;
+}
+@keyframes flipA {
+	from, 75%, to { transform: rotate(0) }
+	25%, 50% { transform: rotate(90deg) }
+}
+@keyframes flipB {
+	from { transform: translateY(0) rotateX(0deg) }
+	6.25% { transform: translateY(0) rotateX(0deg) }
+	12.5% { transform: translateY(-50%) rotateX(90deg) }
+	18.75% { transform: translateY(0) rotateX(180deg) }
+	31.25% { transform: translateY(0) rotateX(180deg) }
+	37.5% { transform: translateY(-50%) rotateX(270deg) }
+	43.75% { transform: translateY(0) rotateX(360deg) }
+	50% { transform: translateY(0) rotateX(360deg) }
+	56.25% { transform: translateY(0) rotateX(360deg) }
+	62.5% { transform: translateY(-50%) rotateX(450deg) }
+	68.75% { transform: translateY(0) rotateX(540deg) }
+	81.25% { transform: translateY(0) rotateX(540deg) }
+	87.5% { transform: translateY(-50%) rotateX(630deg) }
+	93.75% { transform: translateY(0) rotateX(720deg) }
+	to { transform: translateY(0) rotateX(720deg) }
+}
+@keyframes flipC {
+	from { transform: translateY(100%) rotateZ(180deg) rotateX(0deg) }
+	6.25% { transform: translateY(100%) rotateZ(180deg) rotateX(0deg) }
+	12.5% { transform: translateY(150%) rotateZ(180deg) rotateX(90deg) }
+	18.75% { transform: translateY(100%) rotateZ(180deg) rotateX(180deg) }
+	31.25% { transform: translateY(100%) rotateZ(180deg) rotateX(180deg) }
+	37.5% { transform: translateY(150%) rotateZ(180deg) rotateX(270deg) }
+	43.75% { transform: translateY(100%) rotateZ(180deg) rotateX(360deg) }
+	50% { transform: translateY(100%) rotateZ(180deg) rotateX(360deg) }
+	56.25% { transform: translateY(100%) rotateZ(180deg) rotateX(360deg) }
+	62.5% { transform: translateY(150%) rotateZ(180deg) rotateX(450deg) }
+	68.75% { transform: translateY(100%) rotateZ(180deg) rotateX(540deg) }
+	81.25% { transform: translateY(100%) rotateZ(180deg) rotateX(540deg) }
+	87.5% { transform: translateY(150%) rotateZ(180deg) rotateX(630deg) }
+	93.75% { transform: translateY(100%) rotateZ(180deg) rotateX(720deg) }
+	to { transform: translateY(100%) rotateZ(180deg) rotateX(720deg) }
+}
+
+/* Origami */
+.pl-origami {
+	animation-name: origamiA;
+	animation-timing-function: steps(4);
+}
+.pl-origami:before, .pl-origami:after {
+	clip-path: polygon(50% 0,100% 100%,0% 100%);
+	-webkit-clip-path: polygon(50% 0,100% 100%,0% 100%);
+}
+.pl-origami:before {
+	animation-name: origamiB;
+}
+.pl-origami:after {
+	animation-name: origamiC;
+	transform: rotate(180deg);
+}
+@keyframes origamiA {
+	from { transform: rotate(0) }
+	to { transform: rotate(-360deg) }
+}
+@keyframes origamiB {
+	from, 25%, 50%, 75%, to { opacity: 1; transform: translateZ(0) rotateX(0deg) }
+	12.5%, 62.5% { opacity: 1; transform: translateZ(1px) rotateX(-180deg) }
+	37.5%, 87.5% { opacity: 0; transform: translateZ(0) rotateX(0deg) }
+}
+@keyframes origamiC {
+	from, 25%, 50%, 75%, to { opacity: 1; transform: translateZ(0) rotateZ(180deg) rotateX(0deg) }
+	12.5%, 62.5% { opacity: 0; transform: translateZ(0) rotateZ(180deg) rotateX(0deg) }
+	37.5%, 87.5% { opacity: 1; transform: translateZ(1px) rotateZ(180deg) rotateX(-180deg) }
+}
+
+/* Puzzle */
+.pl-puzzle:before, .pl-puzzle:after {
+	transform-origin: 50% 50%;
+}
+.pl-puzzle:before {
+	animation-name: puzzleA;
+}
+.pl-puzzle:after {
+	animation-name: puzzleB;
+	background: #a3a3a3;
+}
+@keyframes puzzleA {
+	from { transform: translate(0,0) scale(1) rotate(0deg); z-index: 1 }
+	12.5% { transform: translate(0,50%) scale(1.5) rotate(-90deg); z-index: 1 }
+	25%, 50.1% { transform: translate(0,100%) scale(1) rotate(-180deg); z-index: 1 }
+	25.1%, 50% { transform: translate(0,100%) scale(1) rotate(-180deg); z-index: 0 }
+	62.5% { transform: translate(0,50%) scale(1.5) rotate(-270deg); z-index: 1 }
+	75% { transform: translate(0,0) scale(1) rotate(-360deg); z-index: 1 }
+	to { transform: translate(0,0) scale(1) rotate(-360deg); z-index: 0 }
+}
+@keyframes puzzleB {
+	from { transform: translate(25%,50%) scale(1) rotate(90deg); z-index: 0 }
+	25% { transform: translate(25%,50%) scale(1) rotate(90deg); z-index: 0 }
+	25.1% { transform: translate(25%,50%) scale(1) rotate(90deg); z-index: 1 }
+	37.5% { transform: translate(0,50%) scale(1.5) rotate(0deg); z-index: 1 }
+	50%, 75.1% { transform: translate(-25%,50%) scale(1) rotate(-90deg); z-index: 1 }
+	50.1%, 75% { transform: translate(-25%,50%) scale(1) rotate(-90deg); z-index: 0 }
+	87.5% { transform: translate(0,50%) scale(1.5) rotate(-180deg); z-index: 1 }
+	to { transform: translate(25%,50%) scale(1) rotate(-270deg); z-index: 1 }
+}
+
+/* Tuck Behind */
+.pl-tuckbehind:before {
+	animation-name: tuckBehindA;
+}
+.pl-tuckbehind:after {
+	animation-name: tuckBehindB;
+	background: #a3a3a3;
+}
+@keyframes tuckBehindA {
+	from { transform: rotate(0); z-index: 1 }
+	25% { transform: rotate(180deg); z-index: 0 }
+	50%, to { transform: rotate(360deg); z-index: 0 }
+}
+@keyframes tuckBehindB {
+	from, 50% { transform: rotate(0); z-index: 0 }
+	75% { transform: rotate(180deg); z-index: -1 }
+	to { transform: rotate(360deg); z-index: -1 }
+}
+
+/** Media queries **/
+@media (prefers-color-scheme: dark) {
+	body {
+		background: #171717;
+		color: #f1f1f1;
 	}
-	5% {
-		transform: translate(0, -1em) rotate(-50deg);
+	.pl-hourglass, .pl-leapfrog:after, .pl-puzzle:after, .pl-tuckbehind:after {
+		background: #575757;
 	}
-	20% {
-		transform: translate(1em, -2em) rotate(47deg);
+}
+@media screen and (min-width: 768px) {
+	.cell {
+		flex-basis: 33.33%;
 	}
-	25% {
-		transform: translate(1em, -2em) rotate(45deg);
-	}
-	30% {
-		transform: translate(1em, -2em) rotate(40deg);
-	}
-	45% {
-		transform: translate(2em, -3em) rotate(137deg);
-	}
-	50% {
-		transform: translate(2em, -3em) rotate(135deg);
-	}
-	55% {
-		transform: translate(2em, -3em) rotate(130deg);
-	}
-	70% {
-		transform: translate(3em, -4em) rotate(217deg);
-	}
-	75% {
-		transform: translate(3em, -4em) rotate(220deg);
-	}
-	100% {
-		transform: translate(0, -1em) rotate(-225deg);
+}
+@media screen and (min-width: 1280px) {
+	.cell {
+		flex-basis: 25%;
 	}
 }
