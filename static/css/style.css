@@ -64,7 +64,7 @@ i:hover{
 
 .prod_name{
 	display: none;
-	color: #ffbc68;
+	color: #40e0d0;
 }
 
 .nav-link{
@@ -118,11 +118,12 @@ i:hover{
 	border: 5px solid white;
 	border-radius: 15%;
 	box-shadow: 0 0 10px white;
+	height: 100%;
 }
 
 .box{
 	margin: 10px;
-	padding: 30px;
+	padding: 10px;
 	font-size: 18px;
 }
 
