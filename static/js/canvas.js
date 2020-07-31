@@ -222,7 +222,7 @@ function fade(){
 
 	setTimeout(function() {
 		fade();
-	}, 2000);
+	}, 3000);
 }
 
 window.onload = function() {
