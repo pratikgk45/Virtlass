@@ -26,8 +26,8 @@
 
 #hill {
 	position: absolute;
-	width: 17em;
-	height: 17em;
+	width: 15em;
+	height: 15em;
 	top: 1.7em;
 	left: 1.7em;
 	background-color: #222;
@@ -37,69 +37,69 @@
 
 #hill:after {
 	position: absolute;
-	width: 17em;
-	height: 17em;
+	width: 15em;
+	height: 15em;
 	left: 0;
 	background-color: #222;
 }
 
 #box {
 	position: absolute;
-	left: -3em;
-	bottom: -7em;
-	width: 3em;
-	height: 3em;
+	left: -1em;
+	bottom: -4.2em;
+	width: 2em;
+	height: 2em;
 	background-color: whitesmoke;
-	border: .25em solid whitesmoke;
+	/*border: .25em solid whitesmoke;*/
 	border-radius: 5%;
-	transform: translate(0em, -3em) rotate(-45deg);
+	transform: translate(0em, -2em) rotate(-45deg);
 	animation: push 2.5s cubic-bezier(.8, 0, .47, .97) infinite;
 }
 
 @keyframes push {
 	0% { 
-		transform: translate(0em, -3em) rotate(-45deg);
-		/*background-color: #F88379;*/
+		transform: translate(0em, -2em) rotate(-45deg);
+		background-color: #F88379;
 	}
 	5% { 
-		transform: translate(0em, -3em) rotate(-40deg);
-		/*background-color: #ca2c92;*/
+		transform: translate(0em, -2em) rotate(-40deg);
+		background-color: #ca2c92;
 	}
 	20% { 
-		transform: translate(3em, -6em) rotate(47deg);
-		/*background-color: #66023c;*/
+		transform: translate(2em, -4em) rotate(47deg);
+		background-color: #66023c;
 	}
 	25% { 
-		transform: translate(3em, -6em) rotate(45deg);
-		/*background-color: #ff0038;*/
+		transform: translate(2em, -4em) rotate(45deg);
+		background-color: #ff0038;
 	}
 	30% { 
-		transform: translate(3em, -6em) rotate(40deg);
-		/*background-color: #b92e34;*/
+		transform: translate(2em, -4em) rotate(40deg);
+		background-color: #b92e34;
 	}
 	45% { 
-		transform: translate(6em, -9em) rotate(137deg);
-		/*background-color: #58111a;*/
+		transform: translate(4em, -6em) rotate(137deg);
+		background-color: #58111a;
 	}
 	50% { 
-		transform: translate(6em, -9em) rotate(135deg);
-		/*background-color: #ff6347;*/
+		transform: translate(4em, -6em) rotate(135deg);
+		background-color: #ff6347;
 	}
 	55% { 
-		transform: translate(6em, -9em) rotate(130deg);
-		/*background-color: #cf352e;*/
+		transform: translate(4em, -6em) rotate(130deg);
+		background-color: #cf352e;
 	}
 	70% { 
-		transform: translate(9em, -12em) rotate(217deg);
-		/*background-color: #fbceb1;*/
+		transform: translate(6em, -8em) rotate(217deg);
+		background-color: #fbceb1;
 	}
 	75% { 
-		transform: translate(9em, -12em) rotate(220deg);
-		/*background-color: #c21e56;*/
+		transform: translate(6em, -8em) rotate(220deg);
+		background-color: #c21e56;
 	}
 	100% { 
-		transform: translate(0em, -3em) rotate(-45deg);
-		/*background-color: #F88379;*/
+		transform: translate(0em, -2em) rotate(-45deg);
+		background-color: #F88379;
 	}
 }
 
