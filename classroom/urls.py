@@ -34,4 +34,5 @@ urlpatterns =[
     path('submit_assignment/<int:id>/',views.submit_assignment,name="submit_assignment"),
     path('submit_list/',views.submit_list,name="submit_list"),
     path('change_password/',views.change_password,name="change_password"),
+    path('/notice_list', views.notice_list, name="notice_list"),
 ]

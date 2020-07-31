@@ -19,7 +19,7 @@
 					<tbody>
 						{% if teacher.teacher_assignment.count == 0 %}
 							<tr>
-								<td colspan="6" style="text-align: center;">There are no assignments uploaded yet</td>
+								<td colspan="6" style="text-align: center;font-style: italic;">There are no assignments uploaded yet</td>
 							</tr>
 						{% else %}
 							{% for assignment in teacher.teacher_assignment.all %}

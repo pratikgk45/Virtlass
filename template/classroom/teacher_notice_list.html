@@ -1,0 +1,36 @@
+{% extends "classroom/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+	
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd assignment_list">
+				<table class="table table-light table-striped table-hover">
+					<thead class="thead-dark">
+				  		<tr>
+						    <th scope="col">#</th>
+						    <th scope="col">Notice Message</th>
+						    <th scope="col">Published At</th>
+				  		</tr>
+					</thead>
+					<tbody>
+						{% if teacher.teacher.count == 0 %}
+							<tr>
+								<td colspan="3" style="text-align: center;font-style: italic;">There is no notice published yet</td>
+							</tr>
+						{% else %}
+							{% for notice in teacher.teacher.all %}
+					    		<tr>
+									<th scope="row">{{ forloop.counter }}</th>
+									<td class="align-middle">{{ notice.message_html|safe }}</td>
+									<td class="align-middle">{{ notice.created_at }}</td>
+					    		</tr>
+					  		{% endfor %}
+						{% endif %}
+					</tbody>
+				</table>
+		    </div>
+		</div>
+	</div>
+
+{% endblock %}

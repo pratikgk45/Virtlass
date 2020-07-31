@@ -20,7 +20,7 @@
 					<tbody>
 							{% if teacher.teacher_submit.count == 0 %}
 								<tr>
-									<td colspan="6" style="text-align: center;font-style: italic;">No Submission Yet</td>
+									<td colspan="6" style="text-align: center;font-style: italic;">There are no submissions yet</td>
 					    		</tr>
 							{% else %}
 								{% for submission in teacher.teacher_submit.all %}

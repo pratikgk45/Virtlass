@@ -223,9 +223,16 @@ def add_notice(request):
             object.save()
             object.students.add(*students_list)
             notice_sent = True
+        if notice_sent:
+        	return redirect('classroom:notice_list')
     else:
         notice = NoticeForm()
     return render(request,'classroom/write_notice.html',{'notice':notice,'notice_sent':notice_sent})
+
+@login_required
+def notice_list(request):
+    teacher = request.user.Teacher
+    return render(request,'classroom/teacher_notice_list.html',{'teacher':teacher})
 
 @login_required
 def write_message(request,pk):

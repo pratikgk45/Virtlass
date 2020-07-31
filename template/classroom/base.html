@@ -45,6 +45,7 @@
 						<li> <a href="{% url 'classroom:students_list' %}">All Students</a> </li>
 						<li> <a href="{% url 'classroom:class_student_list'%}">Class Students</a> </li>
 						<li> <a href="{% url 'classroom:write_notice' %}">Write Notice</a> </li>
+						<li> <a href="{% url 'classroom:notice_list' %}">Notice Board</a> </li>
 						<li> <a href="{% url 'classroom:messages_list' pk=user.pk %}" style="color: orange;">Inbox</a> </li>
 					{% else %}
 						<li> <a href="{% url 'classroom:all_marks_list' pk=user.pk %}">Score Profile</a> </li>
