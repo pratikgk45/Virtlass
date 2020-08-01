@@ -212,7 +212,7 @@ function rotate(){
 var cnt = 0;
 
 function fade(){
-	$(".prod_name").fadeIn(1000);
+	$(".prod_name").fadeIn(1000).delay(1000);
 	$(".prod_name").fadeOut(1000);
 	if(cnt % 2)
 		$(".prod_name").text("VIRTLASS");
@@ -220,9 +220,11 @@ function fade(){
 		$(".prod_name").text("ONLINE CLASSROOM PORTAL");
 	cnt = (cnt + 1) % 2;
 
+	console.log(cnt);
+
 	setTimeout(function() {
 		fade();
-	}, 3000);
+	}, 4000);
 }
 
 window.onload = function() {

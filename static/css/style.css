@@ -51,12 +51,6 @@ i:hover{
 	user-select: none;
 }
 
-.homepage h1{
-	font-size: 48px;
-	letter-spacing: 1px;
-	text-shadow: 2px 2px 5px #111;
-}
-
 .homepage h2{
 	font-size: 36px;
 	padding-top: 150px;
@@ -64,8 +58,14 @@ i:hover{
 }
 
 .prod_name{
+	font-size: 48px;
+	letter-spacing: 1px;
+	text-shadow: 2px 2px 5px #111;
 	display: none;
 	color: #ffcb8b;
+	/*background: -webkit-linear-gradient(45deg, #fff, #000);
+  	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;*/
 }
 
 .nav-link{
@@ -73,7 +73,7 @@ i:hover{
 }
 
 .sidebar{
-	background-color: #a2d5f2;
+	background-color: #a2c4ff;
 	border-bottom: 3px solid #a2d5f2;
 }
 
