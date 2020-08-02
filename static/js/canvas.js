@@ -212,7 +212,7 @@ function rotate(){
 var cnt = 0;
 
 function fade(){
-	$(".prod_name").fadeIn(1000).delay(1000);
+	$(".prod_name").fadeIn(500).delay(1000);
 	$(".prod_name").fadeOut(1000);
 	if(cnt % 2)
 		$(".prod_name").text("VIRTLASS");

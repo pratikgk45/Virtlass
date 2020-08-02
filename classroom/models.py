@@ -12,7 +12,7 @@ class User(AbstractUser):
 
 class Student(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True,related_name='Student')
-    name=models.CharField(max_length=250)
+    name = models.CharField(max_length=250)
     roll_no = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)
     phone = models.IntegerField()
@@ -120,7 +120,7 @@ class SubmitAssignment(models.Model):
     submit = models.FileField(upload_to='Submission')
 
     def __str__(self):
-        return "Submitted"+str(self.submitted_assignment.assignment_name)
+        return "Submitted" + str(self.submitted_assignment.assignment_name)
 
     class Meta:
         ordering = ['-created_at']

@@ -8,6 +8,8 @@
 		    	<br>
 		        {% if message_sent %}
 			  		<h1>Message is sent successfully.</h1>
+			  		<br>
+			  		<a href="{% url 'classroom:write_message' pk=teacher.pk %}"  style="text-decoration: none;" class="btn btn-primary"><p>Want to Send another one ?</p> </a>
 			  	{% else %}
 			  		<h1 style="text-align:center;" class="scramble_text">Write a Message to {{ teacher.name }}</h1>
 			  		<hr>

@@ -3,22 +3,12 @@
 {% load static %}
 
 {% block content %}
-	
-	{% if messages %}
-		<div class="alert alert-primary alert-dismissible fade show" role="alert">
-			{% for message in messages %}
-				<div class="alert">{{ message|safe }}</div>
-			{% endfor %}
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-	{% endif %}
 
 	<div class="use-content">
 		<div class="contain">
 		    <div class="change_pwd assignment_list">
-		    	<h2>Student Name : {{ student.name }}</h2>
+		    	<h3>Score Profile</h3>
+		    	<h5>Name of Student : <a href="{% url 'classroom:student_detail' pk=student.user.pk %}" target="_blank" style="text-decoration: none;">{{ student.name }}</a><span style="float: right;">Roll No. : {{ student.roll_no }}</span></h5>
 		    	<br>
   				<table class="table table-light table-striped table-hover">
 					<thead class="thead-dark">

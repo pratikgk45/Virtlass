@@ -2,21 +2,12 @@
 {% load bootstrap4 %}
 {% load static %}
 {% block content %}
-	
-	{% if messages %}
-		<div class="alert alert-primary alert-dismissible fade show" role="alert">
-			{% for message in messages %}
-				<div class="alert">{{ message|safe }}</div>
-			{% endfor %}
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-	{% endif %}
 
 	<div class="use-content">
 		<div class="contain">
 		    <div class="change_pwd assignment_list">
+		    	<h3>All Students</h3>
+		    	<br>
 		        <form method='GET' action="{% url 'classroom:students_list' %}" class="searchme">
     				Search Student : <input type='search' name='q' placeholder="Search by Name" style="width: auto;" class="answer">&nbsp;<a href="{% url 'classroom:students_list' %}" class="btn btn-secondary" style="float: right;">Clear Search</a>
   				</form>

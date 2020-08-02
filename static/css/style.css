@@ -42,6 +42,7 @@ i:hover{
 .navbar{
 	/*background: radial-gradient(circle, #2078b3, #a2d5f2);*/
 	background-color: #a2d5f2;
+	z-index: 40;
 }
 
 .homepage{
@@ -73,25 +74,38 @@ i:hover{
 }
 
 .sidebar{
-	background-color: #a2c4ff;
-	border-bottom: 3px solid #a2d5f2;
+	position: fixed;
+	margin-left: 85%;
+	width: 15%;
+	background-color: rgba(195, 196, 255, .9);
+	border-bottom-left-radius: 20%;
+	box-shadow: -5px 0px 5px 0 rgba(162, 213, 242, .7);
+	z-index: 1;
 }
 
 .sidebar ul{
 	display: none;
 	list-style-type: none;
+	padding-left: 0;
 }
 
 .sidebar ul li{
 	text-align: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 
 .sidebar ul li a{
 	text-decoration: none;
-	color: #333;
-	font-size: 20px;
+	color: #222;
+	font-size: 16px;
 	font-weight: bold;
 	opacity: .8;
+	transition: letter-spacing 1s;
+}
+
+.sidebar ul li a:hover{
+	letter-spacing: 3px;
 }
 
 .use-content{
@@ -252,6 +266,7 @@ i:hover{
 	height: 100%;
 	text-align: center;
 	padding: 15px;
+	margin-top: 10px;
 }
 
 .profile-details p{
