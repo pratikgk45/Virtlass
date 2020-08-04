@@ -220,8 +220,6 @@ function fade(){
 		$(".prod_name").text("ONLINE CLASSROOM PORTAL");
 	cnt = (cnt + 1) % 2;
 
-	console.log(cnt);
-
 	setTimeout(function() {
 		fade();
 	}, 4000);

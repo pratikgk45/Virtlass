@@ -59,47 +59,47 @@
 @keyframes push {
 	0% { 
 		transform: translate(0em, -2em) rotate(-45deg);
-		background-color: #F88379;
+		background-color: #00B6BC;
 	}
 	5% { 
 		transform: translate(0em, -2em) rotate(-40deg);
-		background-color: #ca2c92;
+		background-color: #1848A0;
 	}
 	20% { 
 		transform: translate(2em, -4em) rotate(47deg);
-		background-color: #66023c;
+		background-color: #71D5E4;
 	}
 	25% { 
 		transform: translate(2em, -4em) rotate(45deg);
-		background-color: #ff0038;
+		background-color: #2692D0;
 	}
 	30% { 
 		transform: translate(2em, -4em) rotate(40deg);
-		background-color: #b92e34;
+		background-color: #A1DBF1;
 	}
 	45% { 
 		transform: translate(4em, -6em) rotate(137deg);
-		background-color: #58111a;
+		background-color: #050A30;
 	}
 	50% { 
 		transform: translate(4em, -6em) rotate(135deg);
-		background-color: #ff6347;
+		background-color: #E4F4F3;
 	}
 	55% { 
 		transform: translate(4em, -6em) rotate(130deg);
-		background-color: #cf352e;
+		background-color: #04247C;
 	}
 	70% { 
 		transform: translate(6em, -8em) rotate(217deg);
-		background-color: #fbceb1;
+		background-color: #0f4d92;
 	}
 	75% { 
 		transform: translate(6em, -8em) rotate(220deg);
-		background-color: #c21e56;
+		background-color: #7EC8E3;
 	}
 	100% { 
 		transform: translate(0em, -2em) rotate(-45deg);
-		background-color: #F88379;
+		background-color: #40e0d0;
 	}
 }
 

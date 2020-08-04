@@ -235,26 +235,38 @@ def notice_list(request):
     return render(request,'classroom/teacher_notice_list.html',{'teacher':teacher})
 
 @login_required
-def write_message(request,pk):
-    message_sent = False
-    teacher = get_object_or_404(models.Teacher,pk=pk)
-
-    if request.method == "POST":
-        form = MessageForm(request.POST)
-        if form.is_valid():
-            mssg = form.save(commit=False)
-            mssg.teacher = teacher
-            mssg.student = request.user.Student
-            mssg.save()
-            message_sent = True
-    else:
-        form = MessageForm()
-    return render(request,'classroom/write_message.html',{'form':form,'teacher':teacher,'message_sent':message_sent})
-
-@login_required
 def messages_list(request,pk):
-    teacher = get_object_or_404(models.Teacher,pk=pk)
-    return render(request,'classroom/messages_list.html',{'teacher':teacher})
+	is_student = request.user.is_student
+	receiver = ''
+
+	if is_student:
+		teacher = get_object_or_404(models.Teacher,pk=pk)
+		receiver = teacher
+		if request.method == "POST":
+			form = MessageForm(request.POST)
+			if form.is_valid():
+				mssg = form.save(commit=False)
+				mssg.teacher = teacher
+				mssg.student = request.user.Student
+				mssg.sent_by_teacher = False
+				mssg.save()
+		else:
+			form = MessageForm()
+	else:
+		student = get_object_or_404(models.Student,pk=pk)
+		receiver = student
+		if request.method == "POST":
+			form = MessageForm(request.POST)
+			if form.is_valid():
+				mssg = form.save(commit=False)
+				mssg.student = student
+				mssg.teacher = request.user.Teacher
+				mssg.sent_by_teacher = True
+				mssg.save()
+		else:
+			form = MessageForm()
+	
+	return render(request, 'classroom/messages_list.html', {'form':form,'receiver':receiver})
 
 @login_required
 def class_notice(request,pk):

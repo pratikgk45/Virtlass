@@ -19,8 +19,10 @@
 					<p><i class="far fa-envelope-open-text"></i> Email ID : <a href = "mailto:{{ student.email }}" style="text-decoration: none;">{{ student.email }}</a></p>
 					{% if request.user.is_student %}
 						{% if user.pk == request.user.pk %}
-							<a href="{% url 'classroom:student_update' pk=user.pk %}" style="text-decoration: none;"> <p class="edit-button">Edit Profile</p> </a>
+							<a href="{% url 'classroom:student_update' pk=user.pk %}" style="text-decoration: none;color: orange;"> <p class="edit-button">Edit Profile</p> </a>
 						{% endif %}
+					{% else %}
+						<a href="{% url 'classroom:messages_list' pk=student.pk %}"  style="text-decoration: none;color: orange;"><p>Message</p> </a>
 					{% endif %}
 			    </div>
 			</div>

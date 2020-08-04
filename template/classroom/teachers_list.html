@@ -41,7 +41,7 @@
 										<td class="align-middle"><a href="{% url 'classroom:teacher_detail' pk=teacher.user.pk %}" target="_blank" style="text-decoration: none;">{{ teacher.name }}</a></td>
 										<td class="align-middle">{{ teacher.user.username }}</a></td>
 										<td class="align-middle">{{ teacher.subject_name }}</td>
-										<td class="align-middle"><a href="{% url 'classroom:write_message' pk=teacher.pk %}" class="btn btn-primary" target="_blank">SEND MESSAGE</a></td>
+										<td class="align-middle"><a href="{% url 'classroom:messages_list' pk=teacher.pk %}" class="btn btn-primary" target="_blank">SEND MESSAGE</a></td>
 						    		</tr>
 						  		{% endfor %}
 							{% endif %}				

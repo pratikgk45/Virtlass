@@ -6,42 +6,51 @@
 	<div class="use-content">
 		<div class="contain">
 		    <div class="change_pwd assignment_list">
-		    	<h3>INBOX</h3>
+		    	<h3>CHAT WINDOW</h3>
 		    	<br>
+		    	<h4>
+		    		{% if request.user.is_student %}
+			    		Teacher Name : {{ receiver.name }}
+			    	{% else %}
+			    		Student Name : {{ receiver.name }}
+			    	{% endif %}
+		    	</h4>
   				<table class="table table-light table-striped table-hover">
-					<thead class="thead-dark">
-				  		<tr>
-						    <th scope="col">Sent By</th>
-						    <th scope="col">Roll No.</th>
-						    <th scope="col">Name</th>
-						    <th scope="col">Message</th>
-						    <th scope="col">Received At</th>
-				  		</tr>
-					</thead>
 					<tbody>
-							{% if teacher.messages.count == 0 %}
+							{% if receiver.messages.count == 0 %}
 								<tr>
-									<td colspan="5" style="text-align: center;font-style: italic;">No Messages Received Yet</td>
+									<td style="text-align: center;font-style: italic;">No Messages Yet</td>
 					    		</tr>
 							{% else %}
-								{% for mssg in teacher.messages.all %}
+								{% for mssg in receiver.messages.all %}
 						    		<tr>
-										<td class="align-middle">
-											<a href="{% url 'classroom:student_detail' pk=mssg.student.user.pk %}" target="_blank" style="text-decoration: none;">
-												{% if mssg.student.student_profile_pic %}
-											        <img src="{{ mssg.student.student_profile_pic.url }}">
-											    {% else %}
-											        <img src="{% static 'images/login-avatar.PNG' %}">
-											    {% endif %}
-											</a>
-										</td>
-										<td class="align-middle">{{ mssg.student.roll_no }}</td>
-										<td class="align-middle"><a href="{% url 'classroom:student_detail' pk=mssg.student.user.pk %}" target="_blank" style="text-decoration: none;">{{ mssg.student.name }}</a></td>
-										<td class="align-middle">{{ mssg.message_html|safe }}</td>
-										<td class="align-middle">{{ mssg.created_at }}</td>
+										{% if mssg.sent_by_teacher %}
+											{% if request.user.is_student %}
+												<td style="text-align: left;">{{ mssg.message_html|safe }}<span style="font-size: 10px;">{{ mssg.created_at }}</span></td>
+											{% else %}
+												<td style="text-align: right;">{{ mssg.message_html|safe }}<span style="font-size: 10px;">{{ mssg.created_at }}</span></td>
+											{% endif %}
+										{% else %}
+											{% if request.user.is_student %}
+												<td style="text-align: right;">{{ mssg.message_html|safe }}<span style="font-size: 10px;">{{ mssg.created_at }}</span></td>
+											{% else %}
+												<td style="text-align: left;">{{ mssg.message_html|safe }}<span style="font-size: 10px;">{{ mssg.created_at }}</span></td>
+											{% endif %}
+										{% endif %}
 						    		</tr>
 						  		{% endfor %}
-							{% endif %}				
+							{% endif %}
+							<tr>
+								<form method="post">
+						    		{% csrf_token %}
+						    		<td>
+									    <div class="form-group">
+									    	<textarea name="message" cols="20" rows="4" class="form-control" placeholder="Write your message here... " title="" required id="id_message"></textarea>
+									    </div>
+									    <input type="submit" class="btn btn-danger" value="Send">
+									</td>
+						  		</form>
+							</tr>				
 					</tbody>
 				</table>
 		    </div>

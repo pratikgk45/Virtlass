@@ -63,9 +63,10 @@ class StudentsInClass(models.Model):
     class Meta:
         unique_together = ('teacher','student')
 
-class MessageToTeacher(models.Model):
-    student = models.ForeignKey(Student,related_name='student',on_delete=models.CASCADE)
+class Message(models.Model):
+    student = models.ForeignKey(Student,related_name='messages',on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher,related_name='messages',on_delete=models.CASCADE)
+    sent_by_teacher = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now=True)
     message = models.TextField()
     message_html = models.TextField(editable=False)
@@ -78,8 +79,8 @@ class MessageToTeacher(models.Model):
         super().save(*args,**kwargs)
 
     class Meta:
-        ordering = ['-created_at']
-        unique_together = ['student','message']
+        ordering = ['created_at']
+        unique_together = ['student','teacher','message']
 
 class ClassNotice(models.Model):
     teacher = models.ForeignKey(Teacher,related_name='teacher',on_delete=models.CASCADE)
