@@ -80,7 +80,6 @@ class Message(models.Model):
 
     class Meta:
         ordering = ['created_at']
-        unique_together = ['student','teacher','message']
 
 class ClassNotice(models.Model):
     teacher = models.ForeignKey(Teacher,related_name='teacher',on_delete=models.CASCADE)

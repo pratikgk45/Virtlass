@@ -13,7 +13,7 @@ from classroom.forms import *
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout,update_session_auth_hash
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
 from classroom import models
 from classroom.models import StudentsInClass,StudentMarks,ClassAssignment,SubmitAssignment,Student,Teacher
 from django.contrib.auth.forms import PasswordChangeForm
@@ -250,6 +250,8 @@ def messages_list(request,pk):
 				mssg.student = request.user.Student
 				mssg.sent_by_teacher = False
 				mssg.save()
+				print(str(pk))
+				return HttpResponseRedirect(reverse('classroom:messages_list', args=(pk,)))
 		else:
 			form = MessageForm()
 	else:
@@ -263,6 +265,8 @@ def messages_list(request,pk):
 				mssg.teacher = request.user.Teacher
 				mssg.sent_by_teacher = True
 				mssg.save()
+				print(str(pk))
+				return HttpResponseRedirect(reverse('classroom:messages_list', args=(pk,)))
 		else:
 			form = MessageForm()
 	

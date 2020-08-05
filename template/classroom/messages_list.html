@@ -1,60 +1,66 @@
 {% extends "classroom/base.html" %}
 {% load bootstrap4 %}
 {% load static %}
+{% load common %}
 {% block content %}
 	
 	<div class="use-content">
 		<div class="contain">
-		    <div class="change_pwd assignment_list">
+		    <div class="change_pwd chat_window">
 		    	<h3>CHAT WINDOW</h3>
-		    	<br>
 		    	<h4>
 		    		{% if request.user.is_student %}
-			    		Teacher Name : {{ receiver.name }}
+			    		Teacher : <a href="{% url 'classroom:teacher_detail' pk=receiver.user.pk %}" target="_blank" style="text-decoration: none;">{{ receiver.name }}</a>
 			    	{% else %}
-			    		Student Name : {{ receiver.name }}
+			    		Student : <a href="{% url 'classroom:student_detail' pk=receiver.user.pk %}" target="_blank" style="text-decoration: none;">{{ receiver.name }}</a>
+			    		<span style="float: right;">Roll No. {{ receiver.roll_no }}</span>
 			    	{% endif %}
 		    	</h4>
-  				<table class="table table-light table-striped table-hover">
-					<tbody>
-							{% if receiver.messages.count == 0 %}
-								<tr>
-									<td style="text-align: center;font-style: italic;">No Messages Yet</td>
-					    		</tr>
-							{% else %}
+				<div class="chat_box">
+					<div class="chats">
+						{% if receiver.messages.count == 0 %}
+							<div style="width: 100%;">
+								<p style="text-align: center;font-style: italic;">No Messages Yet</p>
+				    		</div>
+						{% else %}
+							{% with prev_date="" %}
 								{% for mssg in receiver.messages.all %}
-						    		<tr>
-										{% if mssg.sent_by_teacher %}
+									{% ifnotequal prev_date mssg.created_at.date %}
+										<div class="date_tag">{{ mssg.created_at.date }}</div>
+										{% set prev_date = mssg.created_at.date %}
+									{% endifnotequal %}
+									
+						    		<div class="message_box">
+						    			{% if mssg.sent_by_teacher %}
 											{% if request.user.is_student %}
-												<td style="text-align: left;">{{ mssg.message_html|safe }}<span style="font-size: 10px;">{{ mssg.created_at }}</span></td>
+												{% set message_class = 'message_tag received_message' %}
 											{% else %}
-												<td style="text-align: right;">{{ mssg.message_html|safe }}<span style="font-size: 10px;">{{ mssg.created_at }}</span></td>
+												{% set message_class = 'message_tag sent_message' %}
 											{% endif %}
 										{% else %}
 											{% if request.user.is_student %}
-												<td style="text-align: right;">{{ mssg.message_html|safe }}<span style="font-size: 10px;">{{ mssg.created_at }}</span></td>
+												{% set message_class = 'message_tag sent_message' %}
 											{% else %}
-												<td style="text-align: left;">{{ mssg.message_html|safe }}<span style="font-size: 10px;">{{ mssg.created_at }}</span></td>
+												{% set message_class = 'message_tag received_message' %}
 											{% endif %}
 										{% endif %}
-						    		</tr>
+										<div class="{{ message_class }}" style="display: inline;">
+											<div class="message_text">{{ mssg.message }}
+												<div class="message_time">{{ mssg.created_at.time }}</div>
+											</div>
+							    		</div>
+						    		</div>
 						  		{% endfor %}
-							{% endif %}
-							<tr>
-								<form method="post">
-						    		{% csrf_token %}
-						    		<td>
-									    <div class="form-group">
-									    	<textarea name="message" cols="20" rows="4" class="form-control" placeholder="Write your message here... " title="" required id="id_message"></textarea>
-									    </div>
-									    <input type="submit" class="btn btn-danger" value="Send">
-									</td>
-						  		</form>
-							</tr>				
-					</tbody>
-				</table>
+						  	{% endwith %}
+						{% endif %}
+					</div>
+				</div>
+				<form method="post">
+		    		{% csrf_token %}
+					    <textarea name="message" rows="1" placeholder="Write your message here... " class="form-control" title="" required id="id_message"></textarea>
+					    <input type="submit" class="btn btn-danger" value=">>>">
+		  		</form>
 		    </div>
 		</div>
 	</div>
-	
 {% endblock %}
