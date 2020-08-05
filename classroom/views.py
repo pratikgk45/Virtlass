@@ -18,8 +18,6 @@ from classroom import models
 from classroom.models import StudentsInClass,StudentMarks,ClassAssignment,SubmitAssignment,Student,Teacher
 from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Q
-import pytz
-from datetime import datetime, timezone
 
 def TeacherSignUp(request):
     user_type = 'teacher'
@@ -251,7 +249,6 @@ def messages_list(request,pk):
 				mssg.teacher = teacher
 				mssg.student = request.user.Student
 				mssg.sent_by_teacher = False
-				mssg.created_at = datetime.now(pytz.timezone('Asia/Kolkata'))
 				mssg.save()
 				print(str(pk))
 				return HttpResponseRedirect(reverse('classroom:messages_list', args=(pk,)))
@@ -267,7 +264,6 @@ def messages_list(request,pk):
 				mssg.student = student
 				mssg.teacher = request.user.Teacher
 				mssg.sent_by_teacher = True
-				mssg.created_at = datetime.now(pytz.timezone('Asia/Kolkata'))
 				mssg.save()
 				print(str(pk))
 				return HttpResponseRedirect(reverse('classroom:messages_list', args=(pk,)))

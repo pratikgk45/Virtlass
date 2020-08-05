@@ -67,7 +67,7 @@ class Message(models.Model):
     student = models.ForeignKey(Student,related_name='messages',on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher,related_name='messages',on_delete=models.CASCADE)
     sent_by_teacher = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now=False)
+    created_at = models.DateTimeField(auto_now=True)
     message = models.TextField()
     message_html = models.TextField(editable=False)
 
