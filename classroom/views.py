@@ -18,6 +18,7 @@ from classroom import models
 from classroom.models import StudentsInClass,StudentMarks,ClassAssignment,SubmitAssignment,Student,Teacher
 from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Q
+from datetime import datetime
 
 def TeacherSignUp(request):
     user_type = 'teacher'
@@ -249,8 +250,8 @@ def messages_list(request,pk):
 				mssg.teacher = teacher
 				mssg.student = request.user.Student
 				mssg.sent_by_teacher = False
+				print(datetime.now().time())
 				mssg.save()
-				print(str(pk))
 				return HttpResponseRedirect(reverse('classroom:messages_list', args=(pk,)))
 		else:
 			form = MessageForm()
@@ -264,8 +265,8 @@ def messages_list(request,pk):
 				mssg.student = student
 				mssg.teacher = request.user.Teacher
 				mssg.sent_by_teacher = True
+				print(datetime.now().time())
 				mssg.save()
-				print(str(pk))
 				return HttpResponseRedirect(reverse('classroom:messages_list', args=(pk,)))
 		else:
 			form = MessageForm()

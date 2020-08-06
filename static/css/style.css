@@ -18,8 +18,8 @@ html{
 body{
 	font-family: custom_font !important;
 	overflow: hidden;
-	background: linear-gradient(90deg, rgba(131,58,180,.6) 0%, rgba(253,29,29,.6) 50%, rgba(252,176,69,.6) 100%), url('../images/homeimg.PNG');
-	background-size: cover;
+	background: linear-gradient(90deg, rgba(131,58,180,.6) 0%, rgba(253,29,29,.6) 50%, rgba(252,176,69,.6) 100%), url('../images/homeimg.PNG') !important;
+	background-size: cover !important;
 }
 
 h1,h2,h3,h4,h5,h6{
