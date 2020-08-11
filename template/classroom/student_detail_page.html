@@ -5,24 +5,24 @@
 	<div class="use-content">
 		<div class="contain">
 			<div class="profile">
-			    {% if student.student_profile_pic %}
-			    	<img src="{{ student.student_profile_pic.url }}">
+			    {% if student.profile_pic %}
+			    	<img src="{{ student.profile_pic.url }}">
 			    {% else %}
 			    	<img src="{% static 'images/login-avatar.PNG' %}" alt="">
 			    {% endif %}
 			    <div class="profile-details">
 			    	<br>
 					<h2>{{ student.name }}</h2>
-					<p><i class="far fa-user"></i> Username : {{ student.user.username }}</p>
-					<p><i class="fal fa-user-tag"></i> Roll No. : {{ student.roll_no }}</p>
-					<p><i class="far fa-phone"></i> Contact No. : {{ student.phone }}</p>
-					<p><i class="far fa-envelope-open-text"></i> Email ID : <a href = "mailto:{{ student.email }}" style="text-decoration: none;">{{ student.email }}</a></p>
+					<p><i class="far fa-user"></i>&nbsp;Username : {{ student.user.username }}</p>
+					<p><i class="fal fa-user-tag"></i>&nbsp;Roll No. : {{ student.roll_no }}</p>
+					<p><i class="far fa-phone"></i>&nbsp;Contact No. : {{ student.phone }}</p>
+					<p><i class="far fa-envelope-open-text"></i>&nbsp;Email ID : <a href = "mailto:{{ student.email }}" style="text-decoration: none;">{{ student.email }}</a></p>
 					{% if request.user.is_student %}
 						{% if user.pk == request.user.pk %}
 							<a href="{% url 'classroom:student_update' pk=user.pk %}" style="text-decoration: none;color: orange;"> <p class="edit-button">Edit Profile</p> </a>
 						{% endif %}
 					{% else %}
-						<a href="{% url 'classroom:messages_list' pk=student.pk %}"  style="text-decoration: none;color: orange;"><p>Message</p> </a>
+						<a href="{% url 'classroom:chat_window' pk=student.pk %}"  style="text-decoration: none;color: orange;"><p>Message</p> </a>
 					{% endif %}
 			    </div>
 			</div>

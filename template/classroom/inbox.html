@@ -1,0 +1,62 @@
+{% extends "classroom/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+	
+	<div class="use-content">
+		<div class="contain">
+		    <div class="change_pwd chat_list">
+		    	<h3>INBOX</h3>
+		    	<br>
+  				<table class="table table-light table-striped table-hover">
+					<tbody>
+							{% if mssgs|length == 0 %}
+								<tr>
+									<td colspan="2" style="text-align: center;font-style: italic;">Empty INBOX</td>
+					    		</tr>
+							{% else %}
+								{% for mssg in mssgs %}
+						    		<tr>
+						    			{% if request.user.is_teacher %}
+											<td class="align-middle" style="width: 120px;">
+												<a href="{% url 'classroom:student_detail' pk=mssg.student.user.pk %}" target="_blank" style="text-decoration: none;">
+													{% if mssg.student.profile_pic %}
+												        <img src="{{ mssg.student.profile_pic.url }}">
+												    {% else %}
+												        <img src="{% static 'images/login-avatar.PNG' %}">
+												    {% endif %}
+												</a>
+											</td>
+											<td class="align-middle" style="text-align: left;">
+												<a href="{% url 'classroom:student_detail' pk=mssg.student.user.pk %}" target="_blank" style="text-decoration: none;">{{ mssg.student.name }}</a>
+												<span style="float: right;">{{ mssg.created_at }}</span>
+												{{ mssg.message_html|safe }}
+												<a href="{% url 'classroom:chat_window' pk=mssg.student.user.pk %}" class="btn btn-primary" target="_blank" style="float: right;">CHAT WINDOW</a>
+											</td>
+										{% else %}
+											<td class="align-middle" style="width: 120px;">
+												<a href="{% url 'classroom:teacher_detail' pk=mssg.teacher.user.pk %}" target="_blank" style="text-decoration: none;">
+													{% if mssg.teacher.profile_pic %}
+												        <img src="{{ mssg.teacher.profile_pic.url }}">
+												    {% else %}
+												        <img src="{% static 'images/login-avatar.PNG' %}">
+												    {% endif %}
+												</a>
+											</td>
+											<td class="align-middle" style="text-align: left;">
+												<a href="{% url 'classroom:teacher_detail' pk=mssg.teacher.user.pk %}" target="_blank" style="text-decoration: none;">{{ mssg.teacher.name }}</a>
+												<span style="float: right;">{{ mssg.created_at }}</span>
+												{{ mssg.message_html|safe }}
+												<a href="{% url 'classroom:chat_window' pk=mssg.teacher.user.pk %}" class="btn btn-primary" target="_blank" style="float: right;">CHAT WINDOW</a>
+											</td>
+										{% endif %}
+						    		</tr>
+						  		{% endfor %}
+							{% endif %}				
+					</tbody>
+				</table>
+		    </div>
+		</div>
+	</div>
+
+{% endblock %}

@@ -16,7 +16,7 @@ class Student(models.Model):
     roll_no = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)
     phone = models.IntegerField()
-    student_profile_pic = models.ImageField(upload_to="classroom/student_profile_pic",blank=True)
+    profile_pic = models.ImageField(upload_to="classroom/profile_pic",blank=True)
 
     def get_absolute_url(self):
         return reverse('classroom:student_detail',kwargs={'pk':self.pk})
@@ -33,7 +33,7 @@ class Teacher(models.Model):
     subject_name = models.CharField(max_length=250)
     email = models.EmailField(max_length=254)
     phone = models.IntegerField()
-    teacher_profile_pic = models.ImageField(upload_to="classroom/teacher_profile_pic",blank=True)
+    profile_pic = models.ImageField(upload_to="classroom/profile_pic",blank=True)
     class_students = models.ManyToManyField(Student,through="StudentsInClass")
 
     def get_absolute_url(self):
@@ -100,8 +100,8 @@ class ClassNotice(models.Model):
         unique_together = ['teacher','message']
 
 class ClassAssignment(models.Model):
-    student = models.ManyToManyField(Student,related_name='student_assignment')
-    teacher = models.ForeignKey(Teacher,related_name='teacher_assignment',on_delete=models.CASCADE)
+    student = models.ManyToManyField(Student,related_name='assignment')
+    teacher = models.ForeignKey(Teacher,related_name='assignment',on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
     assignment_name = models.CharField(max_length=250)
     assignment = models.FileField(upload_to='assignments')
@@ -113,8 +113,8 @@ class ClassAssignment(models.Model):
         ordering = ['-created_at']
 
 class SubmitAssignment(models.Model):
-    student = models.ForeignKey(Student,related_name='student_submit',on_delete=models.CASCADE)
-    teacher = models.ForeignKey(Teacher,related_name='teacher_submit',on_delete=models.CASCADE)
+    student = models.ForeignKey(Student,related_name='submit',on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher,related_name='submit',on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
     submitted_assignment = models.ForeignKey(ClassAssignment,related_name='submission_for_assignment',on_delete=models.CASCADE)
     submit = models.FileField(upload_to='Submission')

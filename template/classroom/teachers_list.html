@@ -32,8 +32,8 @@
 						    		<tr>
 										<th scope="row" class="align-middle">{{ forloop.counter }}</th>
 										<td class="align-middle">
-											{% if teacher.teacher_profile_pic %}
-										        <img src="{{ teacher.teacher_profile_pic.url }}">
+											{% if teacher.profile_pic %}
+										        <img src="{{ teacher.profile_pic.url }}">
 										    {% else %}
 										        <img src="{% static 'images/login-avatar.PNG' %}">
 										    {% endif %}
@@ -41,7 +41,7 @@
 										<td class="align-middle"><a href="{% url 'classroom:teacher_detail' pk=teacher.user.pk %}" target="_blank" style="text-decoration: none;">{{ teacher.name }}</a></td>
 										<td class="align-middle">{{ teacher.user.username }}</a></td>
 										<td class="align-middle">{{ teacher.subject_name }}</td>
-										<td class="align-middle"><a href="{% url 'classroom:messages_list' pk=teacher.pk %}" class="btn btn-primary" target="_blank">SEND MESSAGE</a></td>
+										<td class="align-middle"><a href="{% url 'classroom:chat_window' pk=teacher.pk %}" class="btn btn-primary" target="_blank">SEND MESSAGE</a></td>
 						    		</tr>
 						  		{% endfor %}
 							{% endif %}				

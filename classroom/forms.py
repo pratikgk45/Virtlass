@@ -30,7 +30,7 @@ class TeacherProfileForm(forms.ModelForm):
 class TeacherProfileUpdateForm(forms.ModelForm):
     class Meta():
         model = Teacher
-        fields = ['name','subject_name','email','phone','teacher_profile_pic']
+        fields = ['name','subject_name','email','phone','profile_pic']
 
 ## Student Registration Form
 class StudentProfileForm(forms.ModelForm):
@@ -48,7 +48,7 @@ class StudentProfileForm(forms.ModelForm):
 class StudentProfileUpdateForm(forms.ModelForm):
     class Meta():
         model = Student
-        fields = ['name','roll_no','email','phone','student_profile_pic']
+        fields = ['name','roll_no','email','phone','profile_pic']
         
 ## Form for uploading marks and also for updating it.
 class MarksForm(forms.ModelForm):

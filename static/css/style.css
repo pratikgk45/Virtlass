@@ -295,6 +295,14 @@ i:hover{
 	width: 100px;
 }
 
+.chat_list table{
+	box-shadow: 0 0 10px #a2d5f2;
+}
+
+.chat_list img{
+	width: 100px;
+}
+
 input[type=file]{
 	text-align: right;
 	border: 5px;

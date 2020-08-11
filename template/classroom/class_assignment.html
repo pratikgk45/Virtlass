@@ -19,12 +19,12 @@
 				  		</tr>
 					</thead>
 					<tbody>
-						{% if student.student_assignment.count == 0 %}
+						{% if student.assignment.count == 0 %}
 							<tr>
 								<td colspan="6" style="text-align: center;font-style: italic;">There are no assignments uploaded yet</td>
 							</tr>
 						{% else %}
-							{% for assignment in student.student_assignment.all %}
+							{% for assignment in student.assignment.all %}
 					    		<tr>
 									<th scope="row">{{ forloop.counter }}</th>
 									<td>{{ assignment.assignment_name }}</td>

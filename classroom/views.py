@@ -121,8 +121,8 @@ def StudentUpdateView(request,pk):
         form = StudentProfileUpdateForm(request.POST,instance=student)
         if form.is_valid():
             profile = form.save(commit=False)
-            if 'student_profile_pic' in request.FILES:
-                profile.student_profile_pic = request.FILES['student_profile_pic']
+            if 'profile_pic' in request.FILES:
+                profile.profile_pic = request.FILES['profile_pic']
             profile.save()
             profile_updated = True
     else:
@@ -137,8 +137,8 @@ def TeacherUpdateView(request,pk):
         form = TeacherProfileUpdateForm(request.POST,instance=teacher)
         if form.is_valid():
             profile = form.save(commit=False)
-            if 'teacher_profile_pic' in request.FILES:
-                profile.teacher_profile_pic = request.FILES['teacher_profile_pic']
+            if 'profile_pic' in request.FILES:
+                profile.profile_pic = request.FILES['profile_pic']
             profile.save()
             profile_updated = True
     else:
@@ -236,7 +236,38 @@ def notice_list(request):
     return render(request,'classroom/teacher_notice_list.html',{'teacher':teacher})
 
 @login_required
-def messages_list(request,pk):
+def inbox(request):
+	is_student = request.user.is_student
+	mssgs = []
+
+	if is_student:
+		mssgs = Message.objects.filter(student=request.user.Student)
+		teachers = {}
+		for mssg in mssgs:
+			if teachers.get(mssg.teacher.pk) and teachers[mssg.teacher.pk].created_at < mssg.created_at:
+				teachers[mssg.teacher.pk] = mssg
+			else:
+				teachers[mssg.teacher.pk] = mssg
+		mssgs = []
+		for i in teachers:
+			mssgs.append(teachers[i])
+		mssgs.sort(key=lambda x: x.created_at, reverse=True)
+	else:
+		mssgs = Message.objects.filter(teacher=request.user.Teacher)
+		students = {}
+		for mssg in mssgs:
+			if students.get(mssg.student.pk) and students[mssg.student.pk].created_at < mssg.created_at:
+				students[mssg.student.pk] = mssg
+			else:
+				students[mssg.student.pk] = mssg
+		mssgs = []
+		for i in students:
+			mssgs.append(students[i])
+		mssgs.sort(key=lambda x: x.created_at, reverse=True)
+	return render(request,'classroom/inbox.html',{'mssgs':mssgs})
+
+@login_required
+def chat_window(request,pk):
 	is_student = request.user.is_student
 	receiver = ''
 
@@ -252,7 +283,7 @@ def messages_list(request,pk):
 				mssg.sent_by_teacher = False
 				print(datetime.now().time())
 				mssg.save()
-				return HttpResponseRedirect(reverse('classroom:messages_list', args=(pk,)))
+				return HttpResponseRedirect(reverse('classroom:chat_window', args=(pk,)))
 		else:
 			form = MessageForm()
 	else:
@@ -267,11 +298,11 @@ def messages_list(request,pk):
 				mssg.sent_by_teacher = True
 				print(datetime.now().time())
 				mssg.save()
-				return HttpResponseRedirect(reverse('classroom:messages_list', args=(pk,)))
+				return HttpResponseRedirect(reverse('classroom:chat_window', args=(pk,)))
 		else:
 			form = MessageForm()
 	
-	return render(request, 'classroom/messages_list.html', {'form':form,'receiver':receiver})
+	return render(request, 'classroom/chat_window.html', {'form':form,'receiver':receiver})
 
 @login_required
 def class_notice(request,pk):

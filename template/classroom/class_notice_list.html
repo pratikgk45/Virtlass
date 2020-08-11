@@ -28,8 +28,8 @@
 						    		<tr>
 										<td class="align-middle">
 											<a href="{% url 'classroom:teacher_detail' pk=notice.teacher.user.pk %}" target="_blank" style="text-decoration: none;">
-												{% if notice.teacher.teacher_profile_pic %}
-											        <img src="{{ notice.teacher.teacher_profile_pic.url }}">
+												{% if notice.teacher.profile_pic %}
+											        <img src="{{ notice.teacher.profile_pic.url }}">
 											    {% else %}
 											        <img src="{% static 'images/login-avatar.PNG' %}">
 											    {% endif %}

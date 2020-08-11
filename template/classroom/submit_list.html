@@ -20,12 +20,12 @@
 				  		</tr>
 					</thead>
 					<tbody>
-							{% if teacher.teacher_submit.count == 0 %}
+							{% if teacher.submit.count == 0 %}
 								<tr>
 									<td colspan="6" style="text-align: center;font-style: italic;">There are no submissions yet</td>
 					    		</tr>
 							{% else %}
-								{% for submission in teacher.teacher_submit.all %}
+								{% for submission in teacher.submit.all %}
 						    		<tr>
 										<th scope="row">{{ forloop.counter }}</th>
 										<td><a href="{% url 'classroom:student_detail' pk=submission.student.user.pk %}" target="_blank" style="text-decoration: none;">{{ submission.student.name }}</a></td>
