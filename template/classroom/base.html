@@ -55,8 +55,8 @@
 						<li> <a href="{% url 'classroom:change_password' %}" style="color: blue;">Change Password</a> </li>
 						<li> <a href="{% url 'classroom:logout' %}" style="color: red;">Logout</a> </li>
 				{% else %}
-					<li><a class="head-left" href="{% url 'classroom:login' %}" class="nav-link">Login</a></li>
-					<li><a class="head-left" href="{% url 'classroom:signup' %}" class="nav-link">Sign Up</a></li>
+					<li> <a class="head-left" href="{% url 'classroom:login' %}" class="nav-link">Login</a> </li>
+					<li> <a class="head-left" href="{% url 'classroom:signup' %}" class="nav-link">Sign Up</a> </li>
 				{% endif %}
 			</ul>
 		</div>
